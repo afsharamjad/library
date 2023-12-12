@@ -101,9 +101,8 @@ nav{
     
 
 }
-
 form, .content{
-    width: 30%;
+    width: 80%;
     margin:0px auto;
     padding: 20px;
     border: 1px solid #f567;
@@ -184,3 +183,26 @@ a.ft-nav-item {
 }
 
 
+
+
+/* Add this CSS to style the search form */
+.search-form {
+  display: flex;
+  align-items: center;
+}
+
+.search-form input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.search-form button {
+  padding: 8px 15px;
+  background-color: #007bff; /* Change this to your preferred color */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

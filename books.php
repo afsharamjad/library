@@ -57,18 +57,33 @@
         <div class="row mt-4 pb-4">
             <?php
             include 'connect.php';
-            $stmt = $db -> prepare("SELECT*FROM booklist");
-            $stmt -> execute();
-            $result = $stmt ->get_result();
-            while($row = $result ->fetch_assoc()):
 
+            // Ensure that the $db connection is available
+            if (!$db) {
+                die('Database connection error: ' . mysqli_connect_error());
+            }
+
+            // Attempt to prepare and execute the SQL statement
+            $stmt = $db->prepare("SELECT * FROM booklist");
+
+            if (!$stmt) {
+                die('Error preparing SQL statement: ' . $db->error);
+            }
+
+            if (!$stmt->execute()) {
+                die('Error executing SQL statement: ' . $stmt->error);
+            }
+
+            $result = $stmt->get_result();
+
+            // Fetch and display results
+            while ($row = $result->fetch_assoc()):
             ?>
             <div class="col-lg-3">
                 <div class="card-deck">
                     <div class="card p-2 border-secondary mb-2">
-                      <img src="<?= $row['book_image']?>" class="card-img-top" height="200" width="150">
+                      <img src="<?= $row['book_image'] ?>" class="card-img-top" height="200" width="150">
                       <div class="card-body p-1">
-                         <!-- <h6 class="card-title"><?= $row['book_Name'] ?></h6> -->
                          <h6 class="card-title"><?= $row['book_pages'] ?></h6>
                          <button type="button" class="btn btn-secondary btn-sm">Download</button>
                       </div>
@@ -76,6 +91,7 @@
                 </div>
             </div>
             <?php endwhile; ?>
+
         </div>
     </div>
 </body>

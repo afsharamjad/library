@@ -11,11 +11,18 @@
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous">
    </script>
-    <link rel="stylesheet" href="style.css">
-    
-</head>
-
+    <link rel="stylesheet" type="text/css" href="style.css"> 
+    <style>
+    form, .content{
+    width: 80%;
+    margin:inherit;
+    padding: 20px;
+    border: 10px solid #f567;
+    background: white;
+    border-radius: 0px 0px 10px 10px;
+}
 </style>
+</head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
@@ -26,6 +33,19 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarScroll">
             <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+
+
+            <li class="nav-item">
+                <a class="nav-link">SEARCH</a>
+                <!-- Add this code where you want the search bar to appear -->
+                <form class="search-form" method="GET" action="search.php">
+                    <input type="text" name="query" placeholder="Search books">
+                    <button type="submit">Search</button>
+                </form>
+
+
+
+
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="index.php">HOME</a>
               </li>
@@ -34,6 +54,8 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="signup.php">SIGN UP</a>
+              </li>
+
               </li>
                         
               <li class="nav-item">

@@ -1,15 +1,26 @@
 <?php
-require_once "../connect.php";
 
-$connection = newConnection(null);
-$sql = 'CREATE DATABASE IF NOT EXISTS register';
+function newConnection($db = 'register') {
+    $server = 'localhost';
+    $user = 'root';
+    $password = '';
 
-$result = $connection->query($sql);
+    $connection = new mysqli($server, $user, $password);
 
-if($result) {
-    echo "Connection successfuly created";
-} else {
-    echo "Failed to create a connection" . $connection->error;
+    if ($connection->connect_error) {
+        die('Error: ' . $connection->connect_error);
+    }
+
+    // Create the database if it doesn't exist
+    $sql = "CREATE DATABASE IF NOT EXISTS $db";
+    if (!$connection->query($sql)) {
+        die('Error creating database: ' . $connection->error);
+    }
+
+    // Select the database
+    $connection->select_db($db);
+
+    return $connection;
 }
 
-$connection->close();
+?>
